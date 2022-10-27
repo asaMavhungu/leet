@@ -1,3 +1,5 @@
+from typing import *
+
 class Solution:
 	def canConstruct(self, ransomNote: str, magazine: str) -> bool:
 		m = [i for i in magazine]
@@ -8,3 +10,4 @@ class Solution:
 				m.remove(i)
 			else:
 				return False
+		return True
