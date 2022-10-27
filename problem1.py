@@ -1,9 +1,9 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
-            asa = target - nums[i]
+            num2 = target - nums[i]
             jj = i+1
-            kk = nums[jj::]
-            if asa in kk:
-                j = kk.index(asa) + jj
+            numList2 = nums[jj::]
+            if num2 in numList2:
+                j = numList2.index(num2) + jj
                 return [i, j]
