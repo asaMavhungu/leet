@@ -1,4 +1,4 @@
-from typing import *
+from typing import AnyStr
 
 class Solution:
 	def canConstruct(self, ransomNote: str, magazine: str) -> bool:

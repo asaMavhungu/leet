@@ -1,5 +1,3 @@
-from typing import *
-
 class Solution:
 	def numberOfSteps(self, num: int) -> int:
 		n = 0
