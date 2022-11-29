@@ -8,7 +8,7 @@ class Solution:
 				nums[i] = '_'
 
 			else:
-				nums[turtoise], nums[i] = nums[i], nums[turtoise]
+				nums[turtoise] = nums[i]
 				turtoise += 1
 		return turtoise
 
