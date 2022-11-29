@@ -4,10 +4,7 @@ class Solution:
 		turtoise = hare = 1
 		asa = len(nums)
 		for i in range(1, asa):
-			if nums[i] == nums[turtoise-1]:
-				nums[i] = '_'
-
-			else:
+			if nums[i] > nums[turtoise-1]:
 				nums[turtoise] = nums[i]
 				turtoise += 1
 		return turtoise
