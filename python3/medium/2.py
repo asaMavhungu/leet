@@ -25,44 +25,35 @@ class Solution:
 			if point2 != None:
 				#len(l1) == len(l2)
 				sum = point1.val+point2.val+mainPoint.val
-				mainPoint.next = ListNode()
-				#carry = 0
-				if sum >= 10:
-					mainPoint.next=ListNode(1)
-					sum = sum - 10
-				mainPoint.val = sum
-				#print(f"{one.val} -> {two.val}")
-				head = mainPoint
-				mainPoint = mainPoint.next
-
 				point1, point2 = point1.next, point2.next
+	
 			else:
 				#len(l1) > len(l2)
 				sum = point1.val+mainPoint.val
-				mainPoint.next = ListNode()
-				if sum >= 10:
-					mainPoint.next=ListNode(1)
-					sum = sum - 10
-				mainPoint.val = sum
-				#print(f"{one.val} -> {two.val}")
-				head = mainPoint
-				mainPoint = mainPoint.next
-
 				point1= point1.next
+
+			mainPoint.next = ListNode()
+			if sum >= 10:
+				mainPoint.next=ListNode(1)
+				sum = sum - 10
+			mainPoint.val = sum
+			head = mainPoint
+			mainPoint = mainPoint.next
+		
 		while point2 != None:
-			#len(l1) == len(l2)
+			#len(l1) < len(l2)
 			sum = point2.val+mainPoint.val
+			point2= point2.next
 			mainPoint.next = ListNode()
 			#carry = 0
 			if sum >= 10:
 				mainPoint.next=ListNode(1)
 				sum = sum - 10
 			mainPoint.val = sum
-			#print(f"{one.val} -> {two.val}")
 			head = mainPoint
 			mainPoint = mainPoint.next
 
-			point2= point2.next
+			
 
 		
 		if head.next.val == 0:
