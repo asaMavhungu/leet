@@ -6,7 +6,7 @@ class ListNode:
 class Solution:
 	def mergeTwoLists(self, list1: ListNode, list2: ListNode) -> ListNode | None:
 		
-		asa = ten = ListNode()
+		head = hare = ListNode()
 		
 		if list1 == None and list2 == None:
 			return None
@@ -15,19 +15,19 @@ class Solution:
 				return list2
 			return list1
 
-		ten, dummy = (list1 , list2) if list1.val < list2.val else (list2, list1)
+		hare, turtoise = (list1 , list2) if list1.val < list2.val else (list2, list1)
 
-		asa.next = ten
+		head.next = hare
 
-		while ten.next != None:
-			if ten.next.val <= dummy.val:
-				ten = ten.next
+		while hare.next != None:
+			if hare.next.val <= turtoise.val:
+				hare = hare.next
 			else:
-				ten.next, dummy = dummy, ten.next
-				ten = ten.next
-		ten.next = dummy
+				hare.next, turtoise = turtoise, hare.next
+				hare = hare.next
+		hare.next = turtoise
 
-		return asa.next
+		return head.next
 
 
 c = ListNode(5)
@@ -38,5 +38,5 @@ h = ListNode(8)
 g = ListNode(6, h)
 f = ListNode(4, g)
 
-asa = Solution()
-asa.mergeTwoLists(a, f)
+head = Solution()
+head.mergeTwoLists(a, f)
