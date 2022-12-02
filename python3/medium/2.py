@@ -18,11 +18,12 @@ from typing import Optional
 class Solution:
 	def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 		
-		head = mainPoint = ListNode()
+		asa = head = mainPoint = ListNode()
 
 		point1, point2 = l1, l2
 		while point1 != None:
 			if point2 != None:
+				#len(l1) == len(l2)
 				sum = point1.val+point2.val+mainPoint.val
 				mainPoint.next = ListNode()
 				#carry = 0
@@ -31,18 +32,48 @@ class Solution:
 					sum = sum - 10
 				mainPoint.val = sum
 				#print(f"{one.val} -> {two.val}")
+				head = mainPoint
 				mainPoint = mainPoint.next
 
 				point1, point2 = point1.next, point2.next
+			else:
+				#len(l1) > len(l2)
+				sum = point1.val+mainPoint.val
+				mainPoint.next = ListNode()
+				if sum >= 10:
+					mainPoint.next=ListNode(1)
+					sum = sum - 10
+				mainPoint.val = sum
+				#print(f"{one.val} -> {two.val}")
+				head = mainPoint
+				mainPoint = mainPoint.next
+
+				point1= point1.next
+		while point2 != None:
+			#len(l1) == len(l2)
+			sum = point2.val+mainPoint.val
+			mainPoint.next = ListNode()
+			#carry = 0
+			if sum >= 10:
+				mainPoint.next=ListNode(1)
+				sum = sum - 10
+			mainPoint.val = sum
+			#print(f"{one.val} -> {two.val}")
+			head = mainPoint
+			mainPoint = mainPoint.next
+
+			point2= point2.next
+
 		
+		if head.next.val == 0:
+			head.next = None
+		return asa
 
+l1 = [1,2,3]
+l2 = [4,5,5,5,5]
+a = makeLinkedList(l1)
 
-		return head
-
-
-a = makeLinkedList([3,4,5])
-
-f = makeLinkedList([4,6,5])
+f = makeLinkedList(l2)
 
 head = Solution()
 asa = head.addTwoNumbers(a,f)
