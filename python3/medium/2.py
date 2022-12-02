@@ -18,50 +18,31 @@ from typing import Optional
 class Solution:
 	def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 		
-		head = tail = mainPoint = ListNode()
+		head = mainPoint = ListNode()
 
 		point1, point2 = l1, l2
-		while point1 != None:
+		carry = 0
+		while point1 != None or point2 != None or carry:
+			val1 = val2 = 0
+			
+			if point1 != None:
+				val1 = point1.val
+				point1 = point1.next
 			if point2 != None:
-				#len(l1) == len(l2)
-				sum = point1.val+point2.val+mainPoint.val
-				point1, point2 = point1.next, point2.next
-	
-			else:
-				#len(l1) > len(l2)
-				sum = point1.val+mainPoint.val
-				point1= point1.next
+				val2 = point2.val
+				point2 = point2.next
 
-			mainPoint.next = ListNode()
-			if sum >= 10:
-				mainPoint.next=ListNode(1)
-				sum = sum - 10
-			mainPoint.val = sum
-			tail = mainPoint
-			mainPoint = mainPoint.next
-		
-		while point2 != None:
-			#len(l1) < len(l2)
-			sum = point2.val+mainPoint.val
-			point2= point2.next
-			mainPoint.next = ListNode()
-			#carry = 0
-			if sum >= 10:
-				mainPoint.next=ListNode(1)
-				sum = sum - 10
-			mainPoint.val = sum
-			tail = mainPoint
+			sum = val1+val2+carry
+			val = sum%10
+			carry = sum//10
+
+			mainPoint.next = ListNode(val)
 			mainPoint = mainPoint.next
 
-		# Id we have leading zero, drop it
-		if tail.next.val == 0:
-			tail.next = None
-		return head
-
-		divmod
+		return head.next
 
 l1 = [1,2,3]
-l2 = [4,5,5,5,5]
+l2 = [4,5]
 a = makeLinkedList(l1)
 
 f = makeLinkedList(l2)
