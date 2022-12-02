@@ -18,7 +18,7 @@ from typing import Optional
 class Solution:
 	def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 		
-		asa = head = mainPoint = ListNode()
+		head = tail = mainPoint = ListNode()
 
 		point1, point2 = l1, l2
 		while point1 != None:
@@ -37,7 +37,7 @@ class Solution:
 				mainPoint.next=ListNode(1)
 				sum = sum - 10
 			mainPoint.val = sum
-			head = mainPoint
+			tail = mainPoint
 			mainPoint = mainPoint.next
 		
 		while point2 != None:
@@ -50,15 +50,15 @@ class Solution:
 				mainPoint.next=ListNode(1)
 				sum = sum - 10
 			mainPoint.val = sum
-			head = mainPoint
+			tail = mainPoint
 			mainPoint = mainPoint.next
 
-			
+		# Id we have leading zero, drop it
+		if tail.next.val == 0:
+			tail.next = None
+		return head
 
-		
-		if head.next.val == 0:
-			head.next = None
-		return asa
+		divmod
 
 l1 = [1,2,3]
 l2 = [4,5,5,5,5]
@@ -66,8 +66,8 @@ a = makeLinkedList(l1)
 
 f = makeLinkedList(l2)
 
-head = Solution()
-asa = head.addTwoNumbers(a,f)
+tail = Solution()
+asa = tail.addTwoNumbers(a,f)
 
 #asa = makeLinkedList(a)
 while asa != None:
