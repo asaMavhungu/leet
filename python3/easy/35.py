@@ -11,7 +11,7 @@ class Solution:
 			elif target > nums[mid]:
 				left = mid + 1
 			else: return mid
-		return lefr
+		return left
 asa = Solution()
 k = asa.searchInsert([1,3,5,6], 8)
 print(k)
