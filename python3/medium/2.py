@@ -16,13 +16,13 @@ def makeLinkedList(l1):
 		
 from typing import Optional
 class Solution:
-	def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+	def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
 		
 		head = mainPoint = ListNode()
 
 		point1, point2 = l1, l2
 		carry = 0
-		while point1 != None or point2 != None or carry:
+		while point1 or point2 or carry:
 			val1 = val2 = 0
 			
 			if point1 != None:
@@ -33,8 +33,7 @@ class Solution:
 				point2 = point2.next
 
 			sum = val1+val2+carry
-			val = sum%10
-			carry = sum//10
+			carry, val = divmod(sum, 10)
 
 			mainPoint.next = ListNode(val)
 			mainPoint = mainPoint.next

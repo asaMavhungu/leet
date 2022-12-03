@@ -1,24 +1,26 @@
 class Solution:
-    def romanToInt(self, s: str) -> int:
-        x = []
-        for i in s:
-            if i == 'I':
-                x.append(1)
-            elif i == 'V':
-                x.append(5)
-            elif i == 'X':
-                x.append(10)
-            elif i == 'L':
-                x.append(50)
-            elif i == 'C':
-                x.append(100)
-            elif i == 'D':
-                x.append(500)
-            elif i == 'M':
-                x.append(1000)
-        v = x[::-1]
-        y = len(v)
-        for i in range(y-1):
-            if v[i+1] < v[i]:
-                v = v*-1
-        return sum(v)
+	def romanToInt(self, s: str) -> int:
+			sum = 0
+			dic: dict[str, int] = {
+				'I' : 1,
+				'V' : 5,
+				'X' : 10,
+				'L' : 50,
+				'C' : 100,
+				'D' : 500,
+				'M' : 1000
+			}
+			sum: int = 0
+			
+			now: int = dic[s[0]]
+			nex: int = 0
+
+			for i in range(len(s)-1):
+				nex: int  = dic[s[i + 1]]
+				if nex > now:
+					sum -= now
+				else:
+					sum += now
+				now = nex
+			sum += nex
+			return sum
